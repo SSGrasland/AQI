@@ -48,8 +48,9 @@ Google re-fetches IMPORTDATA sources roughly hourly, so the sheet picks up
 each weekly commit automatically — no manual refresh needed.
 
 > **Note**: scheduled GitHub Actions only fire on the repository's **default
-> branch** (`main`). After merging this branch into `main`, update the URL in
-> the sheet's cell A1 to point at `main`.
+> branch** — currently `claude/aqi-data-sheet-10010-d33us3`, which the sheet
+> points at. If you ever rename it or change the default branch, update the
+> URL in the sheet's cell A1 to match.
 
 ## Tableau Pulse notes
 
