@@ -28,6 +28,7 @@ Open-Meteo Air Quality API ──▶ GitHub Actions (weekly, Mondays)
 
 | Column | Description |
 | --- | --- |
+| `Record ID` | Stable unique key per row: date + pollutant code (e.g. `20260721-PM25`) |
 | `Date` | Local date (America/New_York) |
 | `Zipcode` | Always `10010` |
 | `Pollutant` | `PM2.5`, `PM10`, `Ozone`, `Nitrogen Dioxide`, `Sulphur Dioxide`, `Carbon Monoxide`, or `Overall` |

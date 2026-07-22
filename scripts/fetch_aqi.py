@@ -41,6 +41,19 @@ POLLUTANTS = {
     "Overall": ("us_aqi", None),
 }
 
+# Short codes used to build stable per-row record IDs (e.g. 20260721-PM25).
+# A date+pollutant natural key stays identical across weekly rebuilds, unlike
+# a sequential row number that shifts as the 365-day window rolls forward.
+POLLUTANT_CODES = {
+    "PM2.5": "PM25",
+    "PM10": "PM10",
+    "Ozone": "O3",
+    "Nitrogen Dioxide": "NO2",
+    "Sulphur Dioxide": "SO2",
+    "Carbon Monoxide": "CO",
+    "Overall": "ALL",
+}
+
 OUTPUT_PATH = Path(__file__).resolve().parent.parent / "data" / "aqi_daily_10010.csv"
 
 DAYS_OF_HISTORY = 365
@@ -136,6 +149,7 @@ def main() -> int:
             )
             rows.append(
                 {
+                    "Record ID": f"{day.replace('-', '')}-{POLLUTANT_CODES[name]}",
                     "Date": day,
                     "Zipcode": ZIPCODE,
                     "Pollutant": name,
