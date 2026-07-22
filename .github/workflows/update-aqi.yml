@@ -1,4 +1,5 @@
 name: Update AQI data
+# Weekly AQI data refresh
 
 on:
   schedule:
