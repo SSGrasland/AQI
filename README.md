@@ -38,7 +38,9 @@ Open-Meteo Air Quality API ──▶ GitHub Actions (weekly, Mondays)
 
 ## Google Sheet
 
-The connected Google Sheet contains a single formula:
+The connected sheet: [AQI Daily - Zipcode 10010](https://docs.google.com/spreadsheets/d/1x4wgPRbBXgWpEFE2kY3SLMyfmI8org0jr8KspK_3N8g/edit)
+
+It contains a single formula:
 
 ```
 =IMPORTDATA("https://raw.githubusercontent.com/SSGrasland/AQI/<branch>/data/aqi_daily_10010.csv")
@@ -46,6 +48,11 @@ The connected Google Sheet contains a single formula:
 
 Google re-fetches IMPORTDATA sources roughly hourly, so the sheet picks up
 each weekly commit automatically — no manual refresh needed.
+
+**One-time activation**: Google disables `IMPORT*` functions in
+API-created sheets for security. Open the sheet once, click cell **A1**,
+delete the leading apostrophe (`'`) in the formula bar and press Enter, then
+click **Allow access** when prompted. After that the sheet stays live forever.
 
 > **Note**: scheduled GitHub Actions only fire on the repository's **default
 > branch** — currently `claude/aqi-data-sheet-10010-d33us3`, which the sheet
