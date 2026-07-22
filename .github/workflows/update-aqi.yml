@@ -1,0 +1,31 @@
+name: Update AQI data
+
+on:
+  schedule:
+    # Every Monday at 11:00 UTC (6/7am New York time)
+    - cron: "0 11 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch last 365 days of AQI data
+        run: python3 scripts/fetch_aqi.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/aqi_daily_10010.csv
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update AQI data ($(date -u +%Y-%m-%d))"
+            git push
+          fi
